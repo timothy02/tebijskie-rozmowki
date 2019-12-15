@@ -47,6 +47,7 @@ socket.on("CHAT_MESSAGE", function(data){
     messageContainer.appendChild(messageValue);  
 
     messagesContainer.appendChild(messageContainer);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
 
 /* UPDATE CHAT STATE */
