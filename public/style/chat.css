@@ -27,6 +27,8 @@ body{
  border: 2px solid white;
  background-color: #49495d;
  color: #f7f1e3;
+ overflow: scroll;
+ overflow-x: hidden;
 }
 
 .chatFooter{
