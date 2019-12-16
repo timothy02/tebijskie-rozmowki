@@ -1,6 +1,6 @@
 {
   "name": "tebijskie-rozmowki",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Projekt strony na zajecia krylew",
   "main": "index.js",
   "scripts": {
