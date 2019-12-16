@@ -41,7 +41,6 @@ section{
     color: #d1ccc0;
     font-size: 28px;
     padding: 4px;
-    width: 100%;
 }
 
 .maininput input:hover, .maininput input:focus, .maininput input:active {
@@ -144,5 +143,8 @@ section{
     }
     body{
         margin:0;
+    }
+    .maininput input {
+        width: 100%;
     }
 }
