@@ -47,20 +47,24 @@ wsServer.on("connection", function(socket) {
   socket.on("CHAT_CONNECTION", data => {
     if(chats[data.roomName] == undefined){
       return ;
+    } else {
+      chats[data.roomName].users.push(data.userName);
+
+      socket.emit("CHAT_CONNECTION", data);
+      wsServer.emit("CHAT_STATE", chats);
     }
-
-    chats[data.roomName].users.push(data.userName);
-
-    socket.emit("CHAT_CONNECTION", data);
-    wsServer.emit("CHAT_STATE", chats);
   });
 
   socket.on("CHAT_DISCONNECT", data => {
-    var index = chats[data.roomName].users.indexOf(data.userName);
-    if (index !== -1) chats[data.roomName].users.splice(index, 1);
-    
-    socket.emit("CHAT_DISCONNECT", data);
-    wsServer.emit("CHAT_STATE", chats);
+    if(chats[data.roomName] == undefined){
+      return ;
+    } else {
+      var index = chats[data.roomName].users.indexOf(data.userName);
+      if (index !== -1) chats[data.roomName].users.splice(index, 1);
+      
+      socket.emit("CHAT_DISCONNECT", data);
+      wsServer.emit("CHAT_STATE", chats);
+    }
   });
 
   socket.on("CHAT_MESSAGE", data => {
