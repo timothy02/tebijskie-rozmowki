@@ -62,7 +62,7 @@ body{
  background-color: #49495d;
  color: #f7f1e3;
  overflow: auto;
- overflow-x: hidden;
+ overflow-wrap: break-word;
 }
 
 .chatContainer p {
