@@ -45,10 +45,10 @@ wsServer.on("connection", function(socket) {
   socket.emit("welcome", "welcome man");
 
   socket.on("CHAT_CONNECTION", data => {
-    if(chats[data] == undefined){
+    if(chats[data.roomName] == undefined){
       return ;
     }
-    
+
     chats[data.roomName].users.push(data.userName);
 
     socket.emit("CHAT_CONNECTION", data);
