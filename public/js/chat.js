@@ -4,7 +4,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const chatName = urlParams.get('chatName');
 const userName = urlParams.get('userName');
 
-const roomNameElement = document.getElementById("roomName");
+const roomNameElements = document.querySelectorAll(".roomName");
 const kryptonimyElement = document.getElementById("kryptonimy");
 const messageInput = document.getElementById("messageInput");
 const messagesContainer = document.getElementById("messagesContainer");
@@ -52,7 +52,17 @@ socket.on("CHAT_MESSAGE", function(data){
 
 /* UPDATE CHAT STATE */
 socket.on("CHAT_STATE", function(data){
-    roomNameElement.innerHTML = chatName;
+    let fullName;
+
+    Object.keys(data).map(roomName => {
+        if(roomName == chatName){
+            fullName = data[roomName].fullRoomName;
+        }
+    });
+
+    roomNameElements.forEach(el => {
+        el.innerHTML = fullName;
+    })
 
     kryptonimyElement.innerHTML = "";
 
@@ -63,6 +73,10 @@ socket.on("CHAT_STATE", function(data){
     });
 
     kryptonimyElement.innerHTML = kryptonimyElement.innerHTML.slice(0, -1);
+
+    if(kryptonimyElement.innerHTML.length == 0){
+        kryptonimyElement.innerHTML = "*nikogo nie ma*"
+    }
 });
 
 /* CHAT ENTER AND DISCONNECTION */
@@ -73,7 +87,7 @@ socket.emit("CHAT_CONNECTION", {
 
 window.addEventListener('beforeunload', function (e) { 
     e.preventDefault(); 
-    e.returnValue = ''; 
+    e.returnValue = 'Czy na pewno chcesz wyjść? Utracisz wszystkie tebijskie rozmówki.'; 
     socket.emit("CHAT_DISCONNECT", {
         roomName: chatName,
         userName: userName

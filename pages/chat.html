@@ -10,13 +10,16 @@
 </head>
 <body>
     <section class="header">
-<h1>Pokój: <span id="roomName">[Nazwa pokoju]</span> Rozmawisz z <span id="kryptonimy">kryptonimy</span></h1>
+    <a href="/" class="backButton">Powrót<span class="icon icon-arrow"></span></a>
+    <h1>Pokój: <span class="roomName">[Nazwa pokoju]</span> Rozmawiasz z <span id="kryptonimy">kryptonimy</span></h1>
+    <div class="flex-1"></div>
     </section>
     <section id="messagesContainer" class="chatContainer">
+        <p>Witaj w pokoju <b class="roomName"></b>. Przywitaj się ze swoimi tebijskimi przyjaciółmi!</p>
     </section>
     <section class="chatFooter">
         <form id="messageForm">
-            <input type="text" id="messageInput" placeholder="Napisz coś miłego do swojego tebijskiego przyjaciela<3">
+            <input autofocus="true" autocomplete="off" type="text" id="messageInput" placeholder="Wiadomość...">
             <button type="submit">Wyślij</button>
         </form>
     </section>

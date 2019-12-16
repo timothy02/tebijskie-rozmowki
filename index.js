@@ -15,28 +15,33 @@ const wsServer = io(server);
 
 
 let chats = {
-  general: {
-    users: []
-  },
-  kibel: {
-    users: []
+  toaleta: {
+    users: [],
+    fullRoomName: "toaleta na 4"
   },
   kantyna: {
-    users: []
+    users: [],
+    fullRoomName: "kantyna"
+  },
+  exbochen: {
+    users: [],
+    fullRoomName: "ex-bochen"
   },
   palarnia: {
-    users: []
+    users: [],
+    fullRoomName: "palarnia"
   },
   wsb: {
-    users: []
+    users: [],
+    fullRoomName: "wejście do wsb"
   },
   garaze: {
-    users: []
+    users: [],
+    fullRoomName: "garaże"
   }
 }
 
 wsServer.on("connection", function(socket) {
-  console.log("user connected");
   socket.emit("welcome", "welcome man");
 
   socket.on("CHAT_CONNECTION", data => {
