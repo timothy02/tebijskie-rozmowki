@@ -145,4 +145,10 @@ body{
     .backButton{
         margin: 10px 0;
     }
+    .chatFooter, .chatContainer{
+        width: 100%;
+    }
+    .chatFooter, .header{
+        margin-bottom: 0;
+    }
 }
