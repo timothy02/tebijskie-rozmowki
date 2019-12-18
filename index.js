@@ -77,8 +77,9 @@ wsServer.on("connection", function(socket) {
   });
   
   socket.on("disconnect", data => {
+    console.log(data)
     userNickNames.map(userNickName => {
-      if(userNickName == clients[data.id]){
+      if(userNickName == clients[socket.id]){
         userNickNames.splice(userNickNames.indexOf(userNickName), 1);
       }
     });
