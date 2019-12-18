@@ -89,11 +89,16 @@ section{
  display:flex;
  justify-content: center;
  align-items: center;
+ flex-direction: column;
 }
 
-.rooms div.img h3{
+.rooms div.img h3, .rooms div.img p{
     z-index: 20;
     font-size: 24px;
+    margin: 5px;
+}
+.rooms div.img p{
+    font-size: 16px;    
 }
 
 .img-overlay{

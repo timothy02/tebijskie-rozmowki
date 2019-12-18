@@ -25,11 +25,41 @@
    </section>
 
    <section class="rooms">
-    <div class="img img1" onclick="redirectToChat('kantyna')"><div class="img-overlay"></div><h3>kantyna</h3></div>
-    <div class="img img2" onclick="redirectToChat('palarnia')"><div class="img-overlay"></div><h3>palarnia</h3></div>
-    <div class="img img3" onclick="redirectToChat('exbochen')"><div class="img-overlay"></div><h3>ex-bochen</h3></div>
-    <div class="img img4" onclick="redirectToChat('toaleta')"><div class="img-overlay"></div><h3>toaleta na 4</h3></div>
-    <div class="img img5" onclick="redirectToChat('garaze')"><div class="img-overlay"></div><h3>garaże</h3></div>
+    <div class="img img1" onclick="redirectToChat('kantyna')">
+        <div class="img-overlay"></div>
+        <h3>kantyna</h3>
+        <p>
+            Osób w pokoju: <span class="roomCounter" room="kantyna">0</span>
+        </p>
+    </div>
+    <div class="img img2" onclick="redirectToChat('palarnia')">
+        <div class="img-overlay"></div>
+        <h3>palarnia</h3>
+        <p>
+            Osób w pokoju: <span class="roomCounter" room="palarnia">0</span>
+        </p>
+    </div>
+    <div class="img img3" onclick="redirectToChat('exbochen')">
+        <div class="img-overlay"></div>
+        <h3>ex-bochen</h3>
+        <p>
+            Osób w pokoju: <span class="roomCounter" room="exbochen">0</span>
+        </p>
+    </div>
+    <div class="img img4" onclick="redirectToChat('toaleta')">
+        <div class="img-overlay"></div>
+        <h3>toaleta na 4</h3>
+        <p>
+            Osób w pokoju: <span class="roomCounter" room="toaleta">0</span>
+        </p>
+    </div>
+    <div class="img img5" onclick="redirectToChat('garaze')">
+        <div class="img-overlay"></div>
+        <h3>garaże</h3>
+        <p>
+            Osób w pokoju: <span class="roomCounter" room="garaze">0</span>
+        </p>
+    </div>
    </section>
 </body>
 <script src="js/socket.io.js"></script>

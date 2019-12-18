@@ -1,10 +1,15 @@
 var socket = io();
 var userNameInput = document.getElementById("nick");
 var redirector = document.createElement("a");
-document.appendChild(redirector);
 
-socket.on("welcome", function(data){
-    console.log(data)
+socket.on("CHAT_STATE", function(data){
+    const counters = document.querySelectorAll(".roomCounter");
+    
+    counters.forEach((counter) => {
+        if(data[counter.getAttribute("room")] != undefined){
+            counter.innerHTML = data[counter.getAttribute("room")].users.length;
+        }
+    });
 });
 
 
