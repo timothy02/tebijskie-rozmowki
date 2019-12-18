@@ -15,6 +15,8 @@ socket.on("CHAT_STATE", function(data){
 socket.on("IS_OCUPIED", function(data){
     if(data.isOcupied){
         alert("Ta nazwa jest aktualnie przez kogoś używana. Wybierz inną.");
+    } else if(data.isForbidden){
+        alert("Ta nazwa zawiera wulgaryzm. Wybierz inną.");
     } else {
         redirector.click();
     }

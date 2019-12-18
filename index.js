@@ -63,6 +63,12 @@ wsServer.on("connection", function(socket) {
 
       socket.emit("CHAT_CONNECTION", data);
       wsServer.emit("CHAT_STATE", chats);
+
+      wsServer.emit("CHAT_MESSAGE", {
+        userName: `<b style="color: yellow">CZARODZIEJ:</b>`,
+        message: `Tebijczyk <b>${data.userName}</b> dołączył do rozmowy!`,
+        roomName: data.roomName
+      });
     }
   });
 
@@ -76,6 +82,12 @@ wsServer.on("connection", function(socket) {
       userNickNames.splice(userNickNames.indexOf(data.userName), 1);
       socket.emit("CHAT_DISCONNECT", data);
       wsServer.emit("CHAT_STATE", chats);
+
+      wsServer.emit("CHAT_MESSAGE", {
+        userName: `<b style="color: yellow">CZARODZIEJ:</b>`,
+        message: `Tebijczyk <b>${data.userName}</b> opuścił rozmowę!`,
+        roomName: data.roomName
+      });
     }
   });
 
@@ -110,7 +122,18 @@ wsServer.on("connection", function(socket) {
   });
 
   socket.on("CHECK_NICKNAME", (data) => {
-    socket.emit("IS_OCUPIED", {isOcupied: (userNickNames.indexOf(data.userName) != -1)});
+    const isOcupied = (userNickNames.indexOf(data.userName) != -1);
+    let isForbidden = false;
+
+    wulgaryzmy.map(wulgaryzm => {
+      const regeX = new RegExp(wulgaryzm, "i", "g");
+
+      if((regeX.test(data.userName))){
+        isForbidden = true;
+      }
+    });
+
+    socket.emit("IS_OCUPIED", {isOcupied, isForbidden});
   });
 });
 
