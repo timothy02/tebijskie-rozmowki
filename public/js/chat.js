@@ -87,7 +87,7 @@ socket.emit("CHAT_CONNECTION", {
 
 window.addEventListener('beforeunload', function (e) { 
     e.preventDefault(); 
-    e.returnValue = 'Czy na pewno chcesz wyjść? Utracisz wszystkie tebijskie rozmówki.'; 
+    delete e['returnValue']; 
     socket.emit("CHAT_DISCONNECT", {
         roomName: chatName,
         userName: userName

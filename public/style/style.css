@@ -152,4 +152,8 @@ section{
     .maininput input {
         width: 100%;
     }
+
+    .maininput button{
+        margin-top: 20px;
+    }
 }
