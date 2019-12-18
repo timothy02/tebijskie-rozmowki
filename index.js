@@ -86,6 +86,8 @@ wsServer.on("connection", function(socket) {
             chats[chatId].users.splice(chats[chatId].users.indexOf(userNickName), 1);
           }
         });
+
+        wsServer.emit("CHAT_STATE", chats);
       }
     });
   });
