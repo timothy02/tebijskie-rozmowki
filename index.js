@@ -3,6 +3,7 @@ const express = require("express");
 const PORT = process.env.PORT || 3000;
 const INDEX = '/pages/index.html';
 const CHAT = '/pages/chat.html';
+const wulgaryzmy = require("./wulgaryzmy.json");
 
 const server = express()
   .use(express.static("public"))
@@ -68,6 +69,17 @@ wsServer.on("connection", function(socket) {
   });
 
   socket.on("CHAT_MESSAGE", data => {
+    wulgaryzmy.map(wulgaryzm => {
+      const regeX = new RegExp(wulgaryzm, "i", "g");
+
+      if((regeX.test(data.message))){
+        data.message = data.message.replace(regeX, "*****");
+      }
+
+      if((regeX.test(data.userName))){
+        data.userName = data.userName.replace(regeX, "*****");
+      }
+    });
     wsServer.emit("CHAT_MESSAGE", data);
   });
 });
