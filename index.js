@@ -18,6 +18,7 @@ const wsServer = io(server);
 
 let userQueue = [];
 let privIterator = 0;
+let clients = {};
 
 let userNickNames = [];
 
@@ -49,11 +50,14 @@ let chats = {
 }
 
 wsServer.on("connection", function(socket) {
+  clients[socket.id] = "";
+
   socket.emit("CHAT_STATE", chats);
 
   socket.on("CHAT_CONNECTION", data => {
     if(userNickNames.indexOf(data.userName) == -1){
       userNickNames.push(data.userName);
+      clients[socket.id] = data.userName;
     }
 
     if(chats[data.roomName] == undefined){
@@ -73,7 +77,11 @@ wsServer.on("connection", function(socket) {
   });
   
   socket.on("disconnect", data => {
-console.log(data)
+    userNickNames.map(userNickName => {
+      if(userNickName == clients[data.id]){
+        userNickNames.splice(userNickNames.indexOf(userNickName), 1);
+      }
+    });
   });
 
   socket.on("CHAT_DISCONNECT", data => {
@@ -113,6 +121,7 @@ console.log(data)
   socket.on("JOIN_QUEUE", data => {
     userQueue.push(data.userName);
     userNickNames.push(data.userName);
+    clients[socket.id] = data.userName;
 
     setTimeout(matchUsersInQueue, 2500);
   });
