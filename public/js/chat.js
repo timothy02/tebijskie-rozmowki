@@ -40,6 +40,16 @@ socket.on("CHAT_MESSAGE", function(data){
         messageSender.classList.add("somebody");
     }
 
+    const highlightRegex = /@([A-Z])\w+/gi;
+
+    if(data.message.match(highlightRegex)){
+        data.message.match(highlightRegex).forEach(match => {
+            if(match.substr(1) == userName){
+                data.message = data.message.replace(highlightRegex, `<mark>${match}</mark>`);
+            }
+        });
+    }
+
     messageSender.innerHTML = data.userName + ": ";
     messageValue.innerHTML = data.message;
 
