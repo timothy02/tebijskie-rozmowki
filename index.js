@@ -76,11 +76,16 @@ wsServer.on("connection", function(socket) {
     }
   });
   
-  socket.on("disconnect", data => {
-    console.log(data)
+  socket.on("disconnect", () => {
     userNickNames.map(userNickName => {
       if(userNickName == clients[socket.id]){
         userNickNames.splice(userNickNames.indexOf(userNickName), 1);
+
+        Object.keys(chats).map(chatId => {
+          if(chats[chatId].users.indexOf(userNickName) != -1){
+            chats[chatId].users.splice(chats[chatId].users.indexOf(userNickName), 1);
+          }
+        });
       }
     });
   });
