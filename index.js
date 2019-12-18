@@ -90,6 +90,12 @@ wsServer.on("connection", function(socket) {
         wsServer.emit("CHAT_STATE", chats);
       }
     });
+
+    if(userQueue.indexOf(clients[socket.id]) == -1){
+      return ;
+    } else {
+      userQueue.splice(userQueue.indexOf(clients[socket.id]), 1);
+    }
   });
 
   socket.on("CHAT_DISCONNECT", data => {
