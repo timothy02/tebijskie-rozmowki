@@ -27,8 +27,8 @@ function join1on1(){
         return ;
     }
 
-    if(userNameInput.value.length < 2 || userNameInput.value.length > 15){
-        alert("Nazwa musi mieć od 3 do 15 znaków!");
+    if(userNameInput.value.length < 2 || userNameInput.value.length > 25){
+        alert("Nazwa musi mieć od 3 do 25 znaków!");
         return ;
     }
 
@@ -49,8 +49,8 @@ function redirectToChat(chatName){
         return ;
     }
 
-    if(userNameInput.value.length < 2 || userNameInput.value.length > 15){
-        alert("Nazwa musi mieć od 3 do 15 znaków!");
+    if(userNameInput.value.length < 2 || userNameInput.value.length > 25){
+        alert("Nazwa musi mieć od 3 do 25 znaków!");
         return ;
     }
 
@@ -60,6 +60,6 @@ function redirectToChat(chatName){
     }
 
     redirector.href = `chat?chatName=${chatName}&userName=${userNameInput.value}`;
-    
+
     socket.emit("CHECK_NICKNAME", {userName: userNameInput.value});
 }
