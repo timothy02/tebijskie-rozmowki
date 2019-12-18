@@ -71,6 +71,10 @@ wsServer.on("connection", function(socket) {
       });
     }
   });
+  
+  socket.on("disconnect", data => {
+console.log(data)
+  });
 
   socket.on("CHAT_DISCONNECT", data => {
     if(chats[data.roomName] == undefined){
